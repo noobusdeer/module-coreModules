@@ -9,14 +9,13 @@ set( CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/../../" )
 
 project(Plugin)	
 
+include_directories( PUBLIC "${PLUGIN_PATH}/include" "${MODULE_PATH}/include")
+
 list( APPEND SOURCES
 		${PLUGIN_PATH}/src/coreModules.cpp
 		${PLUGIN_PATH}/src/video.cpp
 		${PLUGIN_PATH}/src/template.cpp
 	)
-
-include_directories( PUBLIC "${PLUGIN_PATH}/include" )
-include_directories( PUBLIC ${MODULE_PATH}/include )	
 
 
 add_library(Plugin SHARED ${SOURCES})
