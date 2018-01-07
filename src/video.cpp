@@ -1,6 +1,6 @@
 #include "engine.hpp"
 #include "widgets.hpp"
-#include "cinder/ImageIo.h"
+#include "cinder/qtime/QuickTimeGl.h"
 
 using namespace ci;
 using namespace ci::app;
@@ -11,15 +11,20 @@ public:
   	enum ParamIds { NUM_PARAMS };
   	enum InputIds { NUM_INPUTS };
   	enum OutputIds { OUT_OUTPUT, NUM_OUTPUTS };
-
+	qtime::MovieGlRef   mMovie;
   	gl::TextureRef	mTexture;
   	Video() : Module(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS) {
-    	fs::path path = getAssetPath( "t.jpg");
-	  	if( ! path.empty() ) 
-		  	mTexture = gl::Texture::create( loadImage( path ) );
+    	fs::path path = getAssetPath( "HEXXX (loop).mov");
+	  	if( ! path.empty() ) {
+		  	mMovie = qtime::MovieGl::create( path );
+        	mMovie->play();
+			mMovie->setLoop(true);
+			mMovie->setVolume(0);
+	  	}
   	}
 
 	void step() override { 
+		mTexture = mMovie->getTexture();
     	outputs[0].setValue(mTexture);
   	}
 };

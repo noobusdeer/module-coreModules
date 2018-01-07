@@ -11,9 +11,11 @@ public:
   	enum OutputIds { OUT1_OUTPUT, NUM_OUTPUTS };
 
   	TestModule() : Module(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS) {}
-  	void step() override { 
-		if (inputs[0].isReady()) 
+  	
+	void step() override { 		
+		if (inputs[0].isReady()) {
 			outputs[0].setValue(inputs[0].getValue());
+		}
    	}
 };
 
