@@ -6,7 +6,7 @@ get_filename_component( CINDER_PATH "${MODULE_PATH}/deps/Cinder" ABSOLUTE)
 
 project(Plugin)	
 
-include_directories( PUBLIC "${APP_PATH}/include" )
+include_directories( PUBLIC "${APP_PATH}/include")
 list( APPEND SOURCES
         ${APP_PATH}/src/coreModules.cpp
         ${APP_PATH}/src/video.cpp
